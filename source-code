@@ -1,0 +1,37 @@
+/* a similar query to Amazon and similar sites' system of purchasing items with card or other methods of payment */
+ 
+function purchaseValidity(numberOfItems, cardBalance, priceOfItems, paymentTypeCard, paymentTypePayPal, paymentTypeAmazon, cardNumber, expiration, cVC) {
+    let returnMessage; // remains undefined until declared by the nested functions below
+    if (numberOfItems < 1) {
+        returnMessage = 'Please select an item to purchase.';
+    } else if (cardBalance < priceOfItems) {
+        returnMessage = 'You don\'t have enough money.'
+    } else {
+        if (paymentTypeCard || paymentTypePayPal || paymentTypeAmazon) {
+            if (!cardNumber) {
+                returnMessage = 'Please enter your card number.';
+            } else if (!expiration) {
+                returnMessage = 'Please enter your card\'s date of expiry.';
+            } else if (!cVC) {
+                returnMessage = 'Please enter your card\'s security code.';
+            } else {
+                returnMessage = 'Purchase successful!';
+            }
+        } else {
+            returnMessage = 'Please select a payment method.';
+        }
+    }
+    console.log(returnMessage);
+}
+ 
+/* subsitute the variables with your information like so:
+ 
+purchaseValidity(<number of items you want to purchase>, <your card/PayPal/Amazon balance>,
+<the total price of the items purchased>, <true/false for paying by card>,
+<true/false for paying by PayPal>,
+<true/false for paying by Amazon>,
+<your card number>,
+<your card's expiry date>,
+<your card's security code>)
+ 
+try it in the console! */
